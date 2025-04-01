@@ -4,13 +4,7 @@ struct MainView: View {
     @EnvironmentObject private var store: GalaxyFarFarAwayStore
 
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        Text("A long time ago in a galaxy far, far away...")
     }
 }
 

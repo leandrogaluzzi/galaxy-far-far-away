@@ -1,4 +1,4 @@
 import Foundation
 import Redux
 
-typealias GalaxyFarFarAwayStore = Store<GalaxyFarFarAwayState>
+typealias GalaxyFarFarAwayStore = Store<State>

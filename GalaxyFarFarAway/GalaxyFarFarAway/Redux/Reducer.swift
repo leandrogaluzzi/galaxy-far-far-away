@@ -1,10 +1,10 @@
 import Foundation
 import Redux
 
-func galaxyFarFarAwayReducer(
-    state: GalaxyFarFarAwayState,
+func reducer(
+    state: State,
     action: Action
-) -> GalaxyFarFarAwayState {
+) -> State {
     var state = state
     switch action {
     default:
