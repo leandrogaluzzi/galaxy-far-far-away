@@ -3,12 +3,12 @@ import Redux
 
 func reducer(
     state: State,
-    action: Action
+    action: ReduxAction
 ) -> State {
     var state = state
     switch action {
     default:
-        return state
+        break
     }
     return state
 }
