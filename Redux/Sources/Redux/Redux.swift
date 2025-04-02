@@ -1,13 +1,13 @@
 import Foundation
 
-public protocol ReduxAction {}
-public protocol ReduxState: Equatable {}
+public protocol ReduxAction: Sendable {}
+public protocol ReduxState: Equatable, Sendable {}
 
-public typealias Dispatcher = (ReduxAction) -> Void
-public typealias Reducer<State: ReduxState> = (State, ReduxAction) -> State
-public typealias Middleware<State: ReduxState> = (State, ReduxAction, Dispatcher) -> Void
+public typealias Dispatcher = @MainActor (ReduxAction) -> Void
+public typealias Reducer<State: ReduxState> = @MainActor (State, ReduxAction) -> State
+public typealias Middleware<State: ReduxState> = (State, ReduxAction, Dispatcher) async -> Void
 
-// @MainActor
+@MainActor
 public final class ReduxStore<State: ReduxState>: ObservableObject {
     @Published public private(set) var state: State
 
@@ -24,11 +24,13 @@ public final class ReduxStore<State: ReduxState>: ObservableObject {
         self.middlewares = middlewares
     }
 
-    public func dispatch(action: ReduxAction) {
+    public func dispatch(_ action: ReduxAction) {
         state = reducer(state, action)
 
         middlewares.forEach { middleware in
-            middleware(state, action, dispatch)
+            Task {
+                await middleware(state, action, dispatch)
+            }
         }
     }
 }

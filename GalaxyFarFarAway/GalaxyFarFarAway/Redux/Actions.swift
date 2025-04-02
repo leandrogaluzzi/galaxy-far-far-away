@@ -1,4 +1,10 @@
 import Foundation
 import Redux
 
-struct SomeAction: ReduxAction {}
+struct FetchPlanets: ReduxAction {}
+
+struct SetPlanets: ReduxAction {
+    let planets: [PlanetListItem]
+}
+
+struct FetchPlanetsError: ReduxAction {}

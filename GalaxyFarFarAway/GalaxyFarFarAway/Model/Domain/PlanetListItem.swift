@@ -1,5 +1,5 @@
 import Foundation
 
-struct PlanetListItem {
+struct PlanetListItem: Equatable, Hashable {
     let name: String
 }

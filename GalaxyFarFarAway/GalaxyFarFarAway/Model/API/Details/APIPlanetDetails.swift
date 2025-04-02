@@ -1,6 +1,6 @@
 import Foundation
 
-struct APIPlanetDetails {
+struct APIPlanetDetails: Decodable {
     let name: String
 }
 

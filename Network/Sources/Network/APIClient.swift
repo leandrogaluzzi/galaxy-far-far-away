@@ -1,14 +1,16 @@
 import Foundation
 
-public protocol APIClienting {
+public protocol APIClienting: Sendable {
     func request<T: Decodable>(
         components: URLComponents,
         response: T.Type
     ) async throws -> T
 }
 
-struct APIClient: APIClienting {
-    func request<T: Decodable>(
+public struct APIClient: APIClienting {
+    public init() { }
+    
+    public func request<T: Decodable>(
         components: URLComponents,
         response: T.Type
     ) async throws(APIError) -> T {
