@@ -1,6 +1,6 @@
 import Foundation
 
-struct PlanetListItem: Equatable, Hashable {
+struct Planet: Equatable, Hashable {
     let name: String
     let population: String
     let climates: [Climate]

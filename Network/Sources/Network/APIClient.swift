@@ -9,7 +9,7 @@ public protocol APIClienting: Sendable {
 
 public struct APIClient: APIClienting {
     public init() { }
-    
+
     public func request<T: Decodable>(
         components: URLComponents,
         response: T.Type

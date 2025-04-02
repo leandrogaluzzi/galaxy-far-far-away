@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PlanetCardView: View {
-    let planet: PlanetListItem
+    let planet: Planet
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -11,7 +11,7 @@ struct PlanetCardView: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text("Population: \(planet.population)")
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text("Climates: ")
+                Text("Climates: \(planet.climates.emoji)")
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
@@ -26,7 +26,7 @@ struct PlanetCardView: View {
 
 #Preview {
     PlanetCardView(
-        planet: PlanetListItem.Stubs.tatooine
+        planet: Planet.Stubs.tatooine
     )
     .padding()
 }

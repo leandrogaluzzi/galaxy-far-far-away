@@ -3,11 +3,11 @@ import Foundation
 struct APIPlanetListResponse: Decodable {
     let count: Int
     let next: String
-    let results: [APIPlanetListItem]
+    let results: [APIPlanet]
 }
 
 extension APIPlanetListResponse {
-    func toModel() -> [PlanetListItem] {
-        results.compactMap { $0.toModel() }
+    func toModel() -> [Planet] {
+        results.map { $0.toModel() }
     }
 }

@@ -8,6 +8,9 @@ struct PlanetsListView: View {
             VStack(spacing: 20) {
                 ForEach(store.state.planets, id: \.self) { planet in
                     PlanetCardView(planet: planet)
+                        .onTapGesture {
+                            store.dispatch(SelectPlanet(planet: planet))
+                        }
                 }
             }
             .padding(.horizontal, 20)

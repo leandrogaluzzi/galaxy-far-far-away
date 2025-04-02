@@ -3,8 +3,12 @@ import Redux
 
 struct FetchPlanets: ReduxAction {}
 
-struct SetPlanets: ReduxAction {
-    let planets: [PlanetListItem]
+struct FetchPlanetsError: ReduxAction {}
+
+struct SelectPlanet: ReduxAction {
+    let planet: Planet
 }
 
-struct FetchPlanetsError: ReduxAction {}
+struct SetPlanets: ReduxAction {
+    let planets: [Planet]
+}

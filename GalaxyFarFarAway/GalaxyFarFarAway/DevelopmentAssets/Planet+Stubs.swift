@@ -1,8 +1,8 @@
 import Foundation
 
-extension PlanetListItem {
+extension Planet {
     enum Stubs {
-        static let tatooine = PlanetListItem(
+        static let tatooine = Planet(
             name: "Tatooine",
             population: "50",
             climates: [
@@ -10,7 +10,7 @@ extension PlanetListItem {
             ]
         )
 
-        static let alderaan = PlanetListItem(
+        static let alderaan = Planet(
             name: "Alderaan",
             population: "100",
             climates: [
@@ -18,7 +18,7 @@ extension PlanetListItem {
             ]
         )
 
-        static let yavin = PlanetListItem(
+        static let yavin = Planet(
             name: "Yavin IV",
             population: "200",
             climates: [

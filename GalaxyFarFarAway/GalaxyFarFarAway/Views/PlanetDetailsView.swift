@@ -1,11 +1,25 @@
 import SwiftUI
 
 struct PlanetDetailsView: View {
+    let planet: Planet
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Population: \(planet.population)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text("Climates: \(planet.climates.emoji)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            Spacer()
+        }
+        .navigationTitle(planet.name)
+        .padding()
     }
 }
 
 #Preview {
-    PlanetDetailsView()
+    PlanetDetailsView(
+        planet: .Stubs.alderaan
+    )
 }
