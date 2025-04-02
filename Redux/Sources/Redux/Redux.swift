@@ -1,13 +1,14 @@
 import Foundation
 
-public protocol Action {}
+public protocol ReduxAction {}
+public protocol ReduxState: Equatable {}
 
-public typealias Dispatcher = (Action) -> Void
-public typealias Reducer<State> = (State, Action) -> State
-public typealias Middleware<State> = (State, Action, Dispatcher) -> Void
+public typealias Dispatcher = (ReduxAction) -> Void
+public typealias Reducer<State: ReduxState> = (State, ReduxAction) -> State
+public typealias Middleware<State: ReduxState> = (State, ReduxAction, Dispatcher) -> Void
 
 // @MainActor
-public final class Store<State>: ObservableObject {
+public final class ReduxStore<State: ReduxState>: ObservableObject {
     @Published public private(set) var state: State
 
     private let reducer: Reducer<State>
@@ -23,7 +24,7 @@ public final class Store<State>: ObservableObject {
         self.middlewares = middlewares
     }
 
-    public func dispatch(action: Action) {
+    public func dispatch(action: ReduxAction) {
         state = reducer(state, action)
 
         middlewares.forEach { middleware in
