@@ -1,10 +1,10 @@
 import Foundation
 import Redux
 
-func reducer(
-    state: State,
+func appReducer(
+    state: AppState,
     action: ReduxAction
-) -> State {
+) -> AppState {
     var state = state
     switch action {
     case _ as FetchPlanets:

@@ -4,11 +4,13 @@ import Redux
 
 @main
 struct MainApp: App {
+    
+    
     private let apiClient: APIClienting
     private let planetsDataSource: PlanetsDataSourcing
     private let planetsRepository: PlanetsRepositoring
     private let router: Router
-    private let store: Store
+    private let store: AppStore
 
     init() {
         self.apiClient = APIClient()
@@ -16,9 +18,9 @@ struct MainApp: App {
         self.planetsRepository = PlanetsRepository(dataSource: planetsDataSource)
         self.router = Router()
 
-        self.store = Store(
-            initialState: State(),
-            reducer: reducer,
+        self.store = AppStore(
+            initialState: AppState(),
+            reducer: appReducer,
             middlewares: [
                 fetchPlanets(repository: planetsRepository),
                 navigationHandler(router: router)

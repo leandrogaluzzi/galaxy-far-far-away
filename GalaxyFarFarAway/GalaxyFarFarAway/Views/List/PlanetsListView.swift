@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PlanetsListView: View {
-    @EnvironmentObject private var store: Store
+    @EnvironmentObject private var store: AppStore
 
     var body: some View {
         VStack {
@@ -16,7 +16,7 @@ struct PlanetsListView: View {
         }
         .navigationTitle("In a galaxy far, far away...")
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
+        .onFirstAppear {
             store.dispatch(FetchPlanets())
         }
     }
@@ -38,16 +38,16 @@ struct PlanetsListView: View {
 
 #Preview("Loaded") {
     PlanetsListView()
-        .environmentObject(Store.Stubs.loaded)
+        .environmentObject(AppStore.Stubs.loaded)
 }
 
 
 #Preview("Loading") {
     PlanetsListView()
-        .environmentObject(Store.Stubs.loading)
+        .environmentObject(AppStore.Stubs.loading)
 }
 
 #Preview("Error") {
     PlanetsListView()
-        .environmentObject(Store.Stubs.error)
+        .environmentObject(AppStore.Stubs.error)
 }

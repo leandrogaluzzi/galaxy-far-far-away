@@ -1,13 +1,13 @@
 import Foundation
 
-extension State {
+extension AppState {
     enum Stubs {
-        static let loading = State(
+        static let loading = AppState(
             loadingState: .loading,
             planets: []
         )
 
-        static let loaded = State(
+        static let loaded = AppState(
             loadingState: .loaded,
             planets: [
                 .Stubs.tatooine,
@@ -16,7 +16,7 @@ extension State {
             ]
         )
 
-        static let error = State(
+        static let error = AppState(
             loadingState: .error,
             planets: []
         )

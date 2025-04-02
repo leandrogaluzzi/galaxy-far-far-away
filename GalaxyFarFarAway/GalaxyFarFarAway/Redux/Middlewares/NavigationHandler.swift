@@ -2,7 +2,7 @@ import Redux
 
 func navigationHandler(
     router: Router
-) -> Middleware<State> {
+) -> Middleware<AppState> {
     { state, action, dispatch in
         switch action {
         case let action as SelectPlanet:

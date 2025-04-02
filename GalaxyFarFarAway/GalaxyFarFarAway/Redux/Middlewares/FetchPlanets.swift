@@ -1,6 +1,6 @@
 import Redux
 
-func fetchPlanets(repository: PlanetsRepositoring) -> Middleware<State> {
+func fetchPlanets(repository: PlanetsRepositoring) -> Middleware<AppState> {
     { state, action, dispatch in
         switch action {
         case _ as FetchPlanets:

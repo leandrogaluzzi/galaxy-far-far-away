@@ -1,23 +1,23 @@
 import Foundation
 
-extension Store {
+extension AppStore {
     enum Stubs {
         @MainActor
-        static let loading = Store(
+        static let loading = AppStore(
             initialState: .Stubs.loading,
-            reducer: reducer
+            reducer: appReducer
         )
 
         @MainActor
-        static let loaded = Store(
+        static let loaded = AppStore(
             initialState: .Stubs.loaded,
-            reducer: reducer
+            reducer: appReducer
         )
 
         @MainActor
-        static let error = Store(
+        static let error = AppStore(
             initialState: .Stubs.error,
-            reducer: reducer
+            reducer: appReducer
         )
     }
 }
