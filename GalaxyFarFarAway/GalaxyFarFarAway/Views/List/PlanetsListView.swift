@@ -33,6 +33,9 @@ struct PlanetsListView: View {
             }
             .padding(.horizontal, 20)
         }
+        .refreshable {
+            store.dispatch(FetchPlanets())
+        }
     }
 }
 

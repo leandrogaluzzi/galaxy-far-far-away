@@ -4,8 +4,6 @@ import Redux
 
 @main
 struct MainApp: App {
-    
-    
     private let apiClient: APIClienting
     private let planetsDataSource: PlanetsDataSourcing
     private let planetsRepository: PlanetsRepositoring
