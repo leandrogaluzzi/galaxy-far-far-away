@@ -24,8 +24,10 @@ struct MainApp: App {
 
     var body: some Scene {
         WindowGroup {
-            PlanetsListView()
-                .environmentObject(store)
+            NavigationStack {
+                PlanetsListView()
+            }
+            .environmentObject(store)
         }
     }
 }

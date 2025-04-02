@@ -1,6 +1,6 @@
 import Foundation
 
-enum Climate {
+enum Climate: String {
     case arid
     case frozen
     case temperate

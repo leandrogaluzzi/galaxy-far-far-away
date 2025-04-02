@@ -8,9 +8,11 @@ struct APIPlanetListItem: Decodable {
 }
 
 extension APIPlanetListItem {
-    func toModel() -> PlanetListItem {
+    func toModel() -> PlanetListItem? {
         PlanetListItem(
-            name: name
+            name: name,
+            population: population,
+            climates: climate.toClimates
         )
     }
 }

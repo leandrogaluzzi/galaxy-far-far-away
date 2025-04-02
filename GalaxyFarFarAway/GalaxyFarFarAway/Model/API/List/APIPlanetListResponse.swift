@@ -8,6 +8,6 @@ struct APIPlanetListResponse: Decodable {
 
 extension APIPlanetListResponse {
     func toModel() -> [PlanetListItem] {
-        results.map { $0.toModel() }
+        results.compactMap { $0.toModel() }
     }
 }
