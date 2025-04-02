@@ -8,7 +8,13 @@ struct PlanetDetailsView: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text("Population: \(planet.population)")
                     .frame(maxWidth: .infinity, alignment: .leading)
+                Text("Diameter: \(planet.diameter)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text("Gravity: \(planet.gravity)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 Text("Climates: \(planet.climates.emoji)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text("Terrains: \(planet.terrains.emoji)")
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             Spacer()
