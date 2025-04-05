@@ -2,7 +2,7 @@ import Foundation
 import Network
 
 protocol PlanetsDataSourcing: Sendable {
-    func fetchPlanets() async throws -> [Planet]
+    func fetchPlanetList(page: Int) async throws -> PlanetList
 }
 
 struct PlanetsDataSource: PlanetsDataSourcing {
@@ -12,10 +12,11 @@ struct PlanetsDataSource: PlanetsDataSourcing {
         self.apiClient = apiClient
     }
 
-    func fetchPlanets() async throws -> [Planet] {
-        guard let urlComponents = URLComponents(string: "https://swapi.dev/api/planets/") else {
+    func fetchPlanetList(page: Int) async throws -> PlanetList {
+        guard var urlComponents = URLComponents(string: "https://swapi.dev/api/planets/") else {
             throw URLError(.badURL)
         }
+        urlComponents.queryItems = [URLQueryItem(name: "page", value: "\(page)")]
 
         let response = try await apiClient.request(
             components: urlComponents,

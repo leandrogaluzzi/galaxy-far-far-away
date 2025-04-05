@@ -23,13 +23,14 @@ struct PlanetsListView: View {
 
     private func list() -> some View {
         ScrollView {
-            VStack(spacing: 20) {
+            LazyVStack(spacing: 20) {
                 ForEach(store.state.planets, id: \.self) { planet in
                     PlanetCardView(planet: planet)
                         .onTapGesture {
                             store.dispatch(SelectPlanet(planet: planet))
                         }
                 }
+                LoadMorePlanetsView()
             }
             .padding(.horizontal, 20)
         }

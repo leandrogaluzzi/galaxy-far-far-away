@@ -3,22 +3,28 @@ import Foundation
 extension AppState {
     enum Stubs {
         static let loading = AppState(
+            planets: [],
             loadingState: .loading,
-            planets: []
+            page: 1,
+            isNextAvailable: true
         )
 
         static let loaded = AppState(
-            loadingState: .loaded,
             planets: [
                 .Stubs.tatooine,
                 .Stubs.alderaan,
                 .Stubs.yavin
-            ]
+            ],
+            loadingState: .loaded,
+            page: 1,
+            isNextAvailable: true
         )
 
         static let error = AppState(
+            planets: [],
             loadingState: .error,
-            planets: []
+            page: 1,
+            isNextAvailable: true
         )
     }
 }

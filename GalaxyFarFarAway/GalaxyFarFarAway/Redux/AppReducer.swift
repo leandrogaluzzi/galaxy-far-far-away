@@ -10,9 +10,15 @@ func appReducer(
     case _ as FetchPlanetsError:
         state.loadingState = .error
         state.planets = []
-    case let action as SetPlanets:
+    case let action as SetPlanetList:
         state.loadingState = .loaded
-        state.planets = action.planets
+        state.planets.append(contentsOf: action.planetList.planets)
+        state.isNextAvailable = action.planetList.isNextAvailable
+    case _ as IncrementPage:
+        state.page += 1
+    case _ as ResetPage:
+        state.planets = []
+        state.page = 1
     default:
         break
     }

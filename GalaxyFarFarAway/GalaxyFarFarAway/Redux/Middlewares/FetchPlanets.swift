@@ -5,8 +5,8 @@ func fetchPlanets(repository: PlanetsRepositoring) -> Middleware<AppState> {
         switch action {
         case _ as FetchPlanets:
             do {
-                let planets = try await repository.fetchPlanets()
-                await dispatch(SetPlanets(planets: planets))
+                let planetList = try await repository.fetchPlanetList(page: state.page)
+                await dispatch(SetPlanetList(planetList: planetList))
             } catch {
                 await dispatch(FetchPlanetsError())
             }

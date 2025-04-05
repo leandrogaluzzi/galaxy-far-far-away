@@ -1,7 +1,7 @@
 import Foundation
 
 protocol PlanetsRepositoring: Sendable {
-    func fetchPlanets() async throws -> [Planet]
+    func fetchPlanetList(page: Int) async throws -> PlanetList
 }
 
 struct PlanetsRepository: PlanetsRepositoring {
@@ -11,7 +11,7 @@ struct PlanetsRepository: PlanetsRepositoring {
         self.dataSource = dataSource
     }
 
-    func fetchPlanets() async throws -> [Planet] {
-        try await dataSource.fetchPlanets()
+    func fetchPlanetList(page: Int) async throws -> PlanetList {
+        try await dataSource.fetchPlanetList(page: page)
     }
 }

@@ -1,13 +1,15 @@
 import Foundation
 
 struct APIPlanetListResponse: Decodable {
-    let count: Int
-    let next: String
     let results: [APIPlanet]
+    let next: String?
 }
 
 extension APIPlanetListResponse {
-    func toModel() -> [Planet] {
-        results.map { $0.toModel() }
+    func toModel() -> PlanetList {
+        PlanetList(
+            planets: results.map { $0.toModel() },
+            isNextAvailable: next != nil
+        )
     }
 }
