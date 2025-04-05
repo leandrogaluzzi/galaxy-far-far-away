@@ -4,21 +4,19 @@ import Testing
 
 final class FetchPlanetsTests {
     private var state: AppState
-    private var sut: Middleware<AppState, AppAction>
-    private var planetsRepository: PlanetsRepositoringMock
+    private var sut: Middleware<AppState, AppAction>!
+    private var planetsRepository: PlanetsRepositoring!
 
     init() {
         self.state = AppState()
-        self.planetsRepository = .init()
-        self.sut = fetchPlanets(
-            repository: planetsRepository
-        )
     }
 
     @Test
     func fetchPlanets_isNextAvailable_false() async throws {
         // Given
         state.isNextAvailable = false
+        planetsRepository = PlanetsRepositoringSuccessMock()
+        sut = fetchPlanets(repository: planetsRepository)
         // When
         let result = await sut(state, .fetchPlanets)
         
@@ -27,22 +25,30 @@ final class FetchPlanetsTests {
     }
 
     @Test
-    func fetchPlanets_() async throws {
+    func fetchPlanets_success() async throws {
         // Given
-        let tatooine = Planet.Stubs.tatooine
-        let planetList = PlanetList(
-            planets: [
-                tatooine
-            ],
-            isNextAvailable: true
-        )
+        let planetList = PlanetList.Stubs.stub
 
-        planetsRepository = PlanetsRepositoringMock(planetList: planetList)
+        planetsRepository = PlanetsRepositoringSuccessMock(planetList: planetList)
+        sut = fetchPlanets(repository: planetsRepository)
 
         // When
         let result = await sut(state, .fetchPlanets)
-        
+
         // Then
         #expect(result == .setPlanetList(planetList))
+    }
+
+    @Test
+    func fetchPlanets_failure() async throws {
+        // Given
+        planetsRepository = PlanetsRepositoringFailureMock()
+        sut = fetchPlanets(repository: planetsRepository)
+
+        // When
+        let result = await sut(state, .fetchPlanets)
+
+        // Then
+        #expect(result == .fetchPlanetsError)
     }
 }

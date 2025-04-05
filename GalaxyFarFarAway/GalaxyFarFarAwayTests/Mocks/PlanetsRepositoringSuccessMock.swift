@@ -1,6 +1,6 @@
 @testable import GalaxyFarFarAway
 
-final class PlanetsRepositoringMock: PlanetsRepositoring {
+final class PlanetsRepositoringSuccessMock: PlanetsRepositoring {
     let planetList: PlanetList
 
     init(planetList: PlanetList = PlanetList.Stubs.stub) {

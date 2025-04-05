@@ -14,9 +14,9 @@ final class AppReducerTests {
     @Test
     func initialState() async throws {
         #expect(state.loadingState == .loading)
-        #expect(state.planets == [])
+        #expect(state.planets.isEmpty)
         #expect(state.page == 1)
-        #expect(state.isNextAvailable == true)
+        #expect(state.isNextAvailable)
     }
     
     @Test
