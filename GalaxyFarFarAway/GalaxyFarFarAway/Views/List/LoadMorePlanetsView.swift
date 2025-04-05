@@ -6,8 +6,8 @@ struct LoadMorePlanetsView: View {
     var body: some View {
         Color.clear.frame(height: 1)
             .onAppear {
-                store.dispatch(IncrementPage())
-                store.dispatch(FetchPlanets())
+                store.dispatch(.incrementPage)
+                store.dispatch(.fetchPlanets)
             }
     }
 }

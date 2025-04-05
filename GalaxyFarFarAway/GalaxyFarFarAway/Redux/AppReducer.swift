@@ -3,21 +3,23 @@ import Redux
 
 func appReducer(
     state: AppState,
-    action: ReduxAction
+    action: AppAction
 ) -> AppState {
     var state = state
     switch action {
-    case _ as FetchPlanetsError:
+    case .fetchPlanetsError:
         state.loadingState = .error
-        state.planets = []
-    case let action as SetPlanetList:
+    case let .setPlanetList(planetList):
         state.loadingState = .loaded
-        state.planets.append(contentsOf: action.planetList.planets)
-        state.isNextAvailable = action.planetList.isNextAvailable
-    case _ as IncrementPage:
+        if state.page == 1 {
+            state.planets = planetList.planets
+        } else {
+            state.planets.append(contentsOf: planetList.planets)
+        }
+        state.isNextAvailable = planetList.isNextAvailable
+    case .incrementPage:
         state.page += 1
-    case _ as ResetPage:
-        state.planets = []
+    case .resetPage:
         state.page = 1
     default:
         break

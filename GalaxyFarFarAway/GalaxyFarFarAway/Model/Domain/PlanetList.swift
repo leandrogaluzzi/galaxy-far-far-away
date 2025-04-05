@@ -1,6 +1,6 @@
 import Foundation
 
-struct PlanetList {
+struct PlanetList: Equatable {
     let planets: [Planet]
     let isNextAvailable: Bool
 }

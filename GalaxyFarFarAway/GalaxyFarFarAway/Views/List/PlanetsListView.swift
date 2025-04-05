@@ -17,7 +17,7 @@ struct PlanetsListView: View {
         .navigationTitle("In a galaxy far, far away...")
         .navigationBarTitleDisplayMode(.inline)
         .onFirstAppear {
-            store.dispatch(FetchPlanets())
+            store.dispatch(.fetchPlanets)
         }
     }
 
@@ -27,7 +27,7 @@ struct PlanetsListView: View {
                 ForEach(store.state.planets, id: \.self) { planet in
                     PlanetCardView(planet: planet)
                         .onTapGesture {
-                            store.dispatch(SelectPlanet(planet: planet))
+                            store.dispatch(.selectPlanet(planet))
                         }
                 }
                 LoadMorePlanetsView()
@@ -35,7 +35,8 @@ struct PlanetsListView: View {
             .padding(.horizontal, 20)
         }
         .refreshable {
-            store.dispatch(FetchPlanets())
+            store.dispatch(.resetPage)
+            store.dispatch(.fetchPlanets)
         }
     }
 }

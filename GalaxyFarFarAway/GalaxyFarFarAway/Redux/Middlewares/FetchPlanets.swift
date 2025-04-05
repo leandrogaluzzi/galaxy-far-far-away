@@ -1,19 +1,20 @@
 import Redux
 
-func fetchPlanets(repository: PlanetsRepositoring) -> Middleware<AppState> {
-    { state, action, dispatch in
+func fetchPlanets(repository: PlanetsRepositoring) -> Middleware<AppState, AppAction> {
+    { state, action in
         switch action {
-        case _ as FetchPlanets:
+        case .fetchPlanets:
             if state.isNextAvailable {
                 do {
                     let planetList = try await repository.fetchPlanetList(page: state.page)
-                    await dispatch(SetPlanetList(planetList: planetList))
+                    return .setPlanetList(planetList)
                 } catch {
-                    await dispatch(FetchPlanetsError())
+                    return .fetchPlanetsError
                 }
             }
         default:
             break
         }
+        return nil
     }
 }

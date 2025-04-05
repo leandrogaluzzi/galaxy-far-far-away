@@ -2,13 +2,14 @@ import Redux
 
 func navigationHandler(
     router: Router
-) -> Middleware<AppState> {
-    { state, action, dispatch in
+) -> Middleware<AppState, AppAction> {
+    { state, action in
         switch action {
-        case let action as SelectPlanet:
-            await router.navigate(to: NavigationDestination.details(planet: action.planet))
+        case let .selectPlanet(planet):
+            await router.navigate(to: NavigationDestination.details(planet: planet))
         default:
             break
         }
+        return nil
     }
 }
