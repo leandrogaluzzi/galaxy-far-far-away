@@ -11,8 +11,10 @@ struct PlanetCardView: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text("Population: \(planet.population)")
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text("Climates: \(planet.climates.emoji)")
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                if !planet.climates.isEmpty {
+                    Text("Climates: \(planet.allClimatesString)")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
         }
         .padding()

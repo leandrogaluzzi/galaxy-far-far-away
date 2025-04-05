@@ -1,6 +1,7 @@
 import Foundation
 
 enum Terrain: String {
+    case barren
     case cityscape
     case desert
     case forests
@@ -12,57 +13,14 @@ enum Terrain: String {
     case jungles
     case lakes
     case mountainRanges = "mountain ranges"
+    case mountain
     case mountains
     case ocean
     case rainforests
+    case rock
+    case savanna
     case swamp
     case swamps
     case tundra
-}
-
-extension Terrain {
-    var emoji: String {
-        switch self {
-        case .cityscape:
-            return "🏙️"
-        case .desert:
-            return "🏜️"
-        case .forests:
-            return "🌲"
-        case .gasGiant:
-            return "🌌"
-        case .grasslands:
-            return "🌾"
-        case .grassyHills:
-            return "🌄"
-        case .iceCaves:
-            return "❄️"
-        case .jungle:
-            return "🌿"
-        case .jungles:
-            return "🌿"
-        case .lakes:
-            return "🌊"
-        case .mountainRanges:
-            return "🏔️"
-        case .mountains:
-            return "🌋"
-        case .ocean:
-            return "🌊"
-        case .rainforests:
-            return "🌳"
-        case .swamp:
-            return "🌿"
-        case .swamps:
-            return "🌿"
-        case .tundra:
-            return "❄️"
-        }
-    }
-}
-
-extension Array where Element == Terrain {
-    var emoji: String {
-        return map(\.emoji).joined(separator: " ")
-    }
+    case windy
 }
