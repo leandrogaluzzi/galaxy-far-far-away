@@ -1,3 +1,4 @@
+import Navigation
 import SwiftUI
 
 enum NavigationDestination: Hashable {
@@ -5,7 +6,7 @@ enum NavigationDestination: Hashable {
 }
 
 struct RoutingView: View {
-    @EnvironmentObject var router: Router
+    @EnvironmentObject var router: NavigationRouter
 
     var body: some View {
         NavigationStack(path: $router.path) {

@@ -3,8 +3,8 @@ import Testing
 @testable import GalaxyFarFarAway
 
 final class FetchPlanetsTests {
-    private var state: AppState
     private var sut: Middleware<AppState, AppAction>!
+    private var state: AppState
     private var planetsRepository: PlanetsRepositoring!
 
     init() {

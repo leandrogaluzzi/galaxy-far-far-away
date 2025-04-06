@@ -1,7 +1,8 @@
+import Navigation
 import Redux
 
 func navigationHandler(
-    router: Router
+    router: NavigationRouter
 ) -> Middleware<AppState, AppAction> {
     { state, action in
         switch action {

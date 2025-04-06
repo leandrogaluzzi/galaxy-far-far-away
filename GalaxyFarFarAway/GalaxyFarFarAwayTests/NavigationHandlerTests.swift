@@ -4,8 +4,8 @@ import Testing
 
 @MainActor
 final class NavigationHandlerTests {
-    private var state: AppState
     private var sut: Middleware<AppState, AppAction>!
+    private var state: AppState
     private var router: Router!
 
     init() {

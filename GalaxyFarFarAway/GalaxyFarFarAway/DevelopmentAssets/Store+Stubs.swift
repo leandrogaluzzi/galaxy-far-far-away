@@ -5,19 +5,22 @@ extension AppStore {
         @MainActor
         static let loading = AppStore(
             initialState: .Stubs.loading,
-            reducer: appReducer
+            reducer: appReducer,
+            middlewares: []
         )
 
         @MainActor
         static let loaded = AppStore(
             initialState: .Stubs.loaded,
-            reducer: appReducer
+            reducer: appReducer,
+            middlewares: []
         )
 
         @MainActor
         static let error = AppStore(
             initialState: .Stubs.error,
-            reducer: appReducer
+            reducer: appReducer,
+            middlewares: []
         )
     }
 }

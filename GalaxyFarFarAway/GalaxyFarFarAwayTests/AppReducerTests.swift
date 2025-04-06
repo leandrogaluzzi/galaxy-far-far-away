@@ -3,9 +3,9 @@ import Testing
 @testable import GalaxyFarFarAway
 
 final class AppReducerTests {
-    private let state: AppState
     private var sut: (AppState, AppAction) -> AppState
-    
+    private let state: AppState
+
     init() {
         self.state = AppState()
         self.sut = appReducer

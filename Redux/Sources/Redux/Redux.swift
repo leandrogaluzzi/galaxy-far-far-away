@@ -16,7 +16,7 @@ public final class ReduxStore<State: ReduxState, Action: ReduxAction>: Observabl
     public init(
         initialState: State,
         reducer: @escaping Reducer<State, Action>,
-        middlewares: [Middleware<State, Action>] = [],
+        middlewares: [Middleware<State, Action>],
         debugMode: ReduxDebugMode = .noDebug
     ) {
         self.state = initialState
