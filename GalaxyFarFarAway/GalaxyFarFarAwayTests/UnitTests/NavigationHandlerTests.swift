@@ -1,3 +1,4 @@
+import Navigation
 import Redux
 import Testing
 @testable import GalaxyFarFarAway
@@ -6,7 +7,7 @@ import Testing
 final class NavigationHandlerTests {
     private var sut: Middleware<AppState, AppAction>!
     private var state: AppState
-    private var router: Router!
+    private var router: NavigationRouter!
 
     init() {
         self.state = AppState()
@@ -15,7 +16,7 @@ final class NavigationHandlerTests {
     @Test
     func selectPlanet() async throws {
         // Given
-        router = Router()
+        router = NavigationRouter()
         sut = navigationHandler(router: router)
         let planet = Planet.Stubs.tatooine
         // When
