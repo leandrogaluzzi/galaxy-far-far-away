@@ -10,7 +10,7 @@ struct RoutingView: View {
 
     var body: some View {
         NavigationStack(path: $router.path) {
-            PlanetsListView()
+            MainView()
                 .navigationDestination(for: NavigationDestination.self) { destination in
                     switch destination {
                     case let .details(planet):

@@ -5,7 +5,7 @@ struct PlanetsListView: View {
 
     var body: some View {
         VStack {
-            switch store.state.loadingState {
+            switch store.state.planets.loadingState {
             case .loading:
                 ProgressView()
             case .loaded:
@@ -17,17 +17,17 @@ struct PlanetsListView: View {
         .navigationTitle("In a galaxy far, far away...")
         .navigationBarTitleDisplayMode(.inline)
         .onFirstAppear {
-            store.dispatch(.fetchPlanets)
+            store.dispatch(.planets(.fetchPlanets))
         }
     }
 
     private func list() -> some View {
         ScrollView {
             LazyVStack(spacing: 20) {
-                ForEach(store.state.planets, id: \.self) { planet in
+                ForEach(store.state.planets.planets, id: \.self) { planet in
                     PlanetCardView(planet: planet)
                         .onTapGesture {
-                            store.dispatch(.selectPlanet(planet))
+                            store.dispatch(.planets(.selectPlanet(planet)))
                         }
                 }
                 LoadMorePlanetsView()
@@ -35,8 +35,8 @@ struct PlanetsListView: View {
             .padding(.horizontal, 20)
         }
         .refreshable {
-            store.dispatch(.resetPage)
-            store.dispatch(.fetchPlanets)
+            store.dispatch(.planets(.resetPage))
+            store.dispatch(.planets(.fetchPlanets))
         }
     }
 }

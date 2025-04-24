@@ -3,13 +3,13 @@ import Redux
 func fetchPlanets(repository: PlanetsRepositoring) -> Middleware<AppState, AppAction> {
     { state, action in
         switch action {
-        case .fetchPlanets:
-            if state.isNextAvailable {
+        case .planets(.fetchPlanets):
+            if state.planets.isNextAvailable {
                 do {
-                    let planetList = try await repository.fetchPlanetList(page: state.page)
-                    return .setPlanetList(planetList)
+                    let planetList = try await repository.fetchPlanetList(page: state.planets.page)
+                    return .planets(.setPlanetList(planetList))
                 } catch {
-                    return .fetchPlanetsError
+                    return .planets(.fetchPlanetsError)
                 }
             }
         default:

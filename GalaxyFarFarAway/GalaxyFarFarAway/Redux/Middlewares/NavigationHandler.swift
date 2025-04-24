@@ -6,7 +6,7 @@ func navigationHandler(
 ) -> Middleware<AppState, AppAction> {
     { state, action in
         switch action {
-        case let .selectPlanet(planet):
+        case let .planets(.selectPlanet(planet)):
             await router.navigate(to: NavigationDestination.details(planet: planet))
         default:
             break

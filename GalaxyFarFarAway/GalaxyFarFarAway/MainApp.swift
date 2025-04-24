@@ -8,6 +8,8 @@ struct MainApp: App {
     private let apiClient: APIClienting
     private let planetsDataSource: PlanetsDataSourcing
     private let planetsRepository: PlanetsRepositoring
+    private let filmsDataSource: FilmsDataSourcing
+    private let filmsRepository: FilmsRepositoring
     private let router: NavigationRouter
     private let store: AppStore
 
@@ -15,6 +17,8 @@ struct MainApp: App {
         self.apiClient = APIClient()
         self.planetsDataSource = PlanetsDataSource(apiClient: apiClient)
         self.planetsRepository = PlanetsRepository(dataSource: planetsDataSource)
+        self.filmsDataSource = FilmsDataSource(apiClient: apiClient)
+        self.filmsRepository = FilmsRepository(dataSource: filmsDataSource)
         self.router = NavigationRouter()
 
         self.store = AppStore(
@@ -22,6 +26,7 @@ struct MainApp: App {
             reducer: appReducer,
             middlewares: [
                 fetchPlanets(repository: planetsRepository),
+                fetchFilms(repository: filmsRepository),
                 navigationHandler(router: router)
             ]
         )
